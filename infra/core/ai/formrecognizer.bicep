@@ -8,7 +8,7 @@ param publicNetworkAccess string = 'Enabled'
 param isGovCloudDeployment bool  
 
 param sku object = {
-  name: 'S0'
+  name: 'F0'
 }
 
 // Form Recognizer 

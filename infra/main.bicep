@@ -30,7 +30,7 @@ param openAiSkuName string = 'S0'
 param cosmosdbName string = ''
 param formRecognizerName string = ''
 param enrichmentName string = ''
-param formRecognizerSkuName string = 'S0'
+param formRecognizerSkuName string = 'F0'
 param enrichmentSkuName string = 'S0'
 param appServicePlanName string = ''
 param enrichmentAppServicePlanName string = ''
@@ -43,7 +43,7 @@ param functionsAppName string = ''
 param mediaServiceName string = ''
 param videoIndexerName string = ''
 param searchServicesName string = ''
-param searchServicesSkuName string = 'standard'
+param searchServicesSkuName string = 'free'
 param storageAccountName string = ''
 param containerName string = 'content'
 param uploadContainerName string = 'upload'
@@ -139,8 +139,8 @@ module appServicePlan 'core/host/appserviceplan.bicep' = {
     location: location
     tags: tags
     sku: {
-      name: 'S1'
-      capacity: 3
+      name: 'B1'
+      capacity: 1
     }
     kind: 'linux'
   }
@@ -155,8 +155,8 @@ module funcServicePlan 'core/host/funcserviceplan.bicep' = {
     location: location
     tags: tags
     sku: {
-      name: 'S2'
-      capacity: 2
+      name: 'B1'
+      capacity: 1
     }
     kind: 'linux'
   }
@@ -171,10 +171,7 @@ module enrichmentAppServicePlan 'core/host/enrichmentappserviceplan.bicep' = {
     location: location
     tags: tags
     sku: {
-      name: 'P1v3'
-      tier: 'PremiumV3'
-      size: 'P1v3'
-      family: 'Pv3'
+      name: 'B1'
       capacity: 1
     }
     kind: 'linux'
