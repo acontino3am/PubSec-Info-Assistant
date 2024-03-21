@@ -40,8 +40,8 @@ param applicationInsightsName string = ''
 param backendServiceName string = ''
 param enrichmentServiceName string = ''
 param functionsAppName string = ''
-param mediaServiceName string = ''
-param videoIndexerName string = ''
+// param mediaServiceName string = ''
+// param videoIndexerName string = ''
 param searchServicesName string = ''
 param searchServicesSkuName string = 'free'
 param storageAccountName string = ''
@@ -171,7 +171,7 @@ module enrichmentAppServicePlan 'core/host/enrichmentappserviceplan.bicep' = {
     location: location
     tags: tags
     sku: {
-      name: 'B1'
+      name: 'B2'
       capacity: 1
     }
     kind: 'linux'
@@ -543,29 +543,30 @@ module functions 'core/function/function.bicep' = {
   ]
 }
 
+// NOTE : Resource is depricated.
 // Media Service
-module media_service 'core/video_indexer/media_service.bicep' = {
-  name: 'media_service'
-  scope: rg
-  params: {
-    name: !empty(mediaServiceName) ? mediaServiceName : '${prefix}${abbrs.mediaService}${randomString}'
-    location: location
-    tags: tags
-    storageAccountID: storageMedia.outputs.id
-  }
-}
+// module media_service 'core/video_indexer/media_service.bicep' = {
+//   name: 'media_service'
+//   scope: rg
+//   params: {
+//     name: !empty(mediaServiceName) ? mediaServiceName : '${prefix}${abbrs.mediaService}${randomString}'
+//     location: location
+//     tags: tags
+//     storageAccountID: storageMedia.outputs.id
+//   }
+// }
 
 // AVAM Service
-module avam 'core/video_indexer/video_indexer.bicep' = {
-  name: 'avam'
-  scope: rg
-  params: {
-    name: !empty(videoIndexerName) ? videoIndexerName : '${prefix}${abbrs.videoIndexer}${randomString}'
-    location: location
-    tags: tags
-    mediaServiceAccountResourceId: media_service.outputs.id
-  }
-}
+// module avam 'core/video_indexer/video_indexer.bicep' = {
+//   name: 'avam'
+//   scope: rg
+//   params: {
+//     name: !empty(videoIndexerName) ? videoIndexerName : '${prefix}${abbrs.videoIndexer}${randomString}'
+//     location: location
+//     tags: tags
+//     mediaServiceAccountResourceId: media_service.outputs.id
+//   }
+// }
 
 // USER ROLES
 module openAiRoleUser 'core/security/role.bicep' = {
